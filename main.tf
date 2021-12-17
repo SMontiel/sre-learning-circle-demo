@@ -60,6 +60,12 @@ resource "aws_lambda_function" "demo" {
   source_code_hash = data.archive_file.lambda_demo.output_base64sha256
 
   role = aws_iam_role.lambda_exec.arn
+
+  environment {
+    variables = {
+      CONVERTER_API_KEY = "${var.converter-api-key}"
+    }
+  }
 }
 
 resource "aws_cloudwatch_log_group" "demo" {
@@ -98,7 +104,7 @@ resource "aws_apigatewayv2_api" "lambda" {
 resource "aws_apigatewayv2_stage" "lambda" {
   api_id = aws_apigatewayv2_api.lambda.id
 
-  name        = "serverless_lambda_stage"
+  name        = "api"
   auto_deploy = true
 
   access_log_settings {

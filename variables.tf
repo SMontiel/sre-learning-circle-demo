@@ -13,6 +13,11 @@ variable "aws-region" {
   #default     = "us-east-1"
 }
 
+variable "converter-api-key" {
+  type        = string
+  description = "Get an API key from here: https://free.currencyconverterapi.com/free-api-key"
+}
+
 variable "availability_zones" {
   description = "A comma-separated list of availability zones, defaults to all AZ of the region, if set to something other than the defaults, both private_subnets and public_subnets have to be defined as well"
   #default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
